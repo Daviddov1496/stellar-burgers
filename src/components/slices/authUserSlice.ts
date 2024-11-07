@@ -66,7 +66,7 @@ export const registerUser = createAsyncThunk(
 );
 
 // Определяю интерфейс пользовательских данных
-interface IAuthUser {
+export interface IAuthUser {
   userData: TUser | null; //Данные пользователя
   isAuthChecked: boolean; // Проверка авторизации
   isLoading: boolean; // Состояние загрузки
@@ -74,7 +74,7 @@ interface IAuthUser {
 }
 
 // Определяю начальное состояние для хранилища пользовательских данных
-const initialState: IAuthUser = {
+export const initialState: IAuthUser = {
   userData: null,
   isAuthChecked: false,
   isLoading: false,
