@@ -26,6 +26,12 @@ import {
 } from './authUserSlice';
 
 describe('тест authUserSlice', () => {
+    const ERROR_REGISTER = 'регистрация не удалась';
+    const ERROR_GET_USER = 'загрузка пользователя не удалась';
+    const ERROR_LOGIN = 'вход не удался';
+    const ERROR_LOGOUT = 'выход не удался';
+    const ERROR_UPDATE_USER = 'обновление пользователя неудалось';
+    const ERROR_CHECK_USER_AUTH = 'пользователь не зарегистрирован';
     beforeAll(() => {// устанавливаю глобальный объект localStorage с помощью мок-функций
         // создаю методы для теста
         global.localStorage = {
@@ -63,7 +69,7 @@ describe('тест authUserSlice', () => {
             type: registerUser.rejected.type
           };
           const stateTest = authUserSlice.reducer(initialState, action);
-          const stateCheck: IAuthUser = { ...initialState, error: 'регистрация не удалась' };
+          const stateCheck: IAuthUser = { ...initialState, error: ERROR_REGISTER };
           expect(stateTest).toEqual(stateCheck);
     });
     it('тест userRegister.pending', () => {
@@ -89,7 +95,7 @@ describe('тест authUserSlice', () => {
             type: getUser.rejected.type
         };
         const stateTest = authUserSlice.reducer(initialState, action);
-        const stateCheck: IAuthUser = { ...initialState, error: 'загрузка пользователя не удалась' };
+        const stateCheck: IAuthUser = { ...initialState, error: ERROR_GET_USER };
         expect(stateTest).toEqual(stateCheck);
     });
     it('тест getUser.pending', () => {
@@ -115,7 +121,7 @@ describe('тест authUserSlice', () => {
             type: loginUser.rejected.type
           };
           const stateTest = authUserSlice.reducer(initialState, action);
-          const stateCheck: IAuthUser = { ...initialState, error: 'вход не удался' };
+          const stateCheck: IAuthUser = { ...initialState, error: ERROR_LOGIN };
           expect(stateTest).toEqual(stateCheck);
     });
     it('тест loginUser.pending', () => {
@@ -141,7 +147,7 @@ describe('тест authUserSlice', () => {
             type: logoutUser.rejected.type
         };
         const stateTest = authUserSlice.reducer(initialState, action);
-        const stateCheck: IAuthUser = { ...initialState, error: 'выход не удался', isAuthChecked: true };
+        const stateCheck: IAuthUser = { ...initialState, error: ERROR_LOGOUT, isAuthChecked: true };
         expect(stateTest).toEqual(stateCheck);
     });
     it('тест logoutUser.pending', () => {
@@ -166,7 +172,7 @@ describe('тест authUserSlice', () => {
             type: updateUser.rejected.type
         };
         const stateTest = authUserSlice.reducer(initialState, action);
-        const stateCheck: IAuthUser = { ...initialState, error: 'обновление пользователя неудалось' };
+        const stateCheck: IAuthUser = { ...initialState, error: ERROR_UPDATE_USER };
         expect(stateTest).toEqual(stateCheck);
     });
     it('тест updateUser.pending', () => {
@@ -192,7 +198,7 @@ describe('тест authUserSlice', () => {
             type: checkUserAuth.rejected.type
         };
         const stateTest = authUserSlice.reducer(initialState, action);
-        const stateCheck: IAuthUser = { ...initialState, error: 'пользователь не зарегистрирован', isAuthChecked: false };
+        const stateCheck: IAuthUser = { ...initialState, error: ERROR_CHECK_USER_AUTH, isAuthChecked: false };
         expect(stateTest).toEqual(stateCheck);
     });
     it('тест checkUserAuth.pending', () => {
